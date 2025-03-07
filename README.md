@@ -81,20 +81,6 @@ Related command line tooling:
 - term - Interactive multi-terminal launcher. Great for demoing.
 
 
-
-# Visual resources
-
-Visual resources and simple code examples below.
-
-website?
-github?
-youtube about techonlogy?
-youtube about setup?
-youtube about example 1?
-youtube about example 2?
-youtube about example 3?
-powerpoint?
-
 # Getting started
 
 CLI tooling setup:
@@ -107,18 +93,40 @@ Buliding:
 cmake -B build
 ```
 
-# Example applications
+# Usage examples
 
-## Server-client
+## Tutorial 1
 
-???
+Step-by-step instructions for creating a simple server/client application that utilizes Native RPC framework in Python.
+This tutorial relies on the command line utility `term`, which was installed in `Getting started` chapter.
 
-Startup commands:
-```
-npx server_example/server.ts
-```
+We start by configuring a nice launcher dashboard by editing the `.term` configuration:
 
-## Cross-language
+[<img src='doc/1-term.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-term.png)
+
+The dashboard can be opened by executing `term -ui` in one terminal and two `term`s in others:
+
+[<img src='doc/1-dash.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-dash.png)
+
+A blank VS Code solution can be created by executing `mkdir` and `code` commands:
+
+[<img src='doc/1-mkdir.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-mkdir.png)
+
+This opens a blank VS Code project:
+
+[<img src='doc/1-blank.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-blank.png)
+
+The only `nrpc-py` dependency can be installed with `pip install`:
+
+[<img src='doc/1-pip.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-pip.png)
+
+Installed dependencies can be validated with `pip list`:
+
+[<img src='doc/1-deps.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-deps.png)
+
+
+
+## Tutorial 2
 
 ???
 
@@ -152,3 +160,17 @@ Cross-language example:
 ```
 term -wt "cmake -B build" "npx server_example/server.ts"
 ```
+
+
+# Visual resources
+
+Visual resources and simple code examples below.
+
+website?
+github?
+youtube about techonlogy?
+youtube about setup?
+youtube about example 1?
+youtube about example 2?
+youtube about example 3?
+powerpoint?
