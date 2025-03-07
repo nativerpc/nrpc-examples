@@ -1,26 +1,28 @@
-# Native RPC (Main documentation and usage examples)
+# Native RPC (documentation and tutorials)
 
-Cross-platform and cross-language communication library that rethinks the way we build distributed systems and handle communication between remote processes. 
+Native RPC is a Cross-platform and cross-language communication library that rethinks the way we build distributed systems and handle communication between local and remote processes. 
 
-Solution draws motivation from many well-established solutions: 
+Solution draws inspiration from a wide-range of well-established and wide-spead solutions: 
 
-- REST
-- Swagger schemas
-- Typescript's json interfaces
-- Python's TypedDict
 - GRPC
 - Protobuf
 - ROS
 - RQT Graph
 - GraphQL
 - ZMQ
+- REST
+- Swagger schemas
+- Typescript's json interfaces
+- Python's TypedDict
 - JSON
+- Sockets
 - C#'s serialization tools, language reflection, annotations
 - Node.JS's and Express's annotation based end-points 
 
-image?
+[<img src='doc/0-logos.png' style='border: 1px solid white; margin-left: 40px;height: 250px'/>](doc/0-logos.png)
 
-Primary focus of this approach is to provide a software developer tools and concerete implementation examples to tackle the every-day challenges of software development when dealing with:
+
+This solution deals with many aspects of typical software development:
 
 - Distributed systems
     - Socket communication
@@ -38,18 +40,16 @@ Primary focus of this approach is to provide a software developer tools and conc
 - Cross-platform
     - Windows, Linux, Mac
 
-image? 
-network topology image?
 
 Implementation consists of 5 GitHub repositories:
 
-- nrpc-examples - Primary landing page for Native RPC. Describes the techonlogy and provides some usage examples.
-- nrpc-cli - Devops command line tooling.
-- nrpc-py - Python library, installed globally or inside a virtual python environment with "pip install nrpc-py".
-- nrpc-ts - Typescript library, installed locally inside a project with "npm i nrpc-ts".
-- nrpc-cpp - C++ library, installed locally with CMake configuration.
+- [nrpc-examples](https://github.com/nativerpc/nrpc-examples) - Primary landing page for Native RPC. Describes the techonlogy and provides some usage examples.
+- [nrpc-cli](https://github.com/nativerpc/nrpc-cli) - Devops command line tooling.
+- [nrpc-py](https://github.com/nativerpc/nrpc-py) - Python library, installed globally or inside a virtual python environment with "pip install nrpc-py".
+- [nrpc-ts](https://github.com/nativerpc/nrpc-ts) - Typescript library, installed locally inside a project with "npm i nrpc-ts".
+- [nrpc-cpp](https://github.com/nativerpc/nrpc-cpp) - C++ library, installed locally with CMake configuration.
 
-image?
+[<img src='doc/0-repos.png' style='border: 1px solid white; margin-left: 40px;height: 250px'/>](doc/0-repos.png)
 
 Supported operating systems, programming environments, and programming languages:
 
@@ -63,9 +63,7 @@ Supported operating systems, programming environments, and programming languages
 - Python
 - Typescript
 
-image?
-
-Implementation consists of 5 classes:
+On the implementation level there's 5 classes:
 
 - nprclass - Class annotation class, that is used to describe 5 things: request structures, reponse structures, class fields, remote services, service RPC methods.
 - RoutingSocket - Handles serialization, routing, and error tracking. Bind- and Connect-style routing sockets are used to connects services with clients.
@@ -73,25 +71,17 @@ Implementation consists of 5 classes:
 - ClientSocket - Same as Server Socket, but not uniquely identified by an IP and port.
 - ServiceClient - Wrapper around a RoutingSocket. Acts like a client to a remote service.
 
-image?
-
 Related command line tooling:
 
-- show - Show's and examines network topology and schema.
-- term - Interactive multi-terminal launcher. Great for demoing.
+- `show` - Show's and examines network topology and schema.
+- `term` - Interactive multi-terminal launcher. Great for demoing.
 
 
 # Getting started
 
-CLI tooling setup:
-```
-git clone nrpc-cli...
-```
+Step-by-step instructions for configuring Native RPC dependencies and environment.
 
-Buliding:
-```
-cmake -B build
-```
+todo...
 
 # Usage examples
 
@@ -100,11 +90,17 @@ cmake -B build
 Step-by-step instructions for creating a simple server/client application that utilizes Native RPC framework in Python.
 This tutorial relies on the command line utility `term`, which was installed in `Getting started` chapter.
 
-We start by configuring a nice launcher dashboard by editing the `.term` configuration:
+The only other dependency is `nrpc-py` module, which implements the Native RPC tooling in Python.
+
+For starters, let's visualize our client/server applications in a system design diagram. The Client will be sending "doQuery" requests at 1 hz rate, and Server will be responding to each Request with Response.
+
+[<img src='doc/1-design.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-design.png)
+
+The dashboard launcher is configured by editing the `c:\git\.term` configuration:
 
 [<img src='doc/1-term.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-term.png)
 
-The dashboard can be opened by executing `term -ui` in one terminal and two `term`s in others:
+The dashboard is opened by executing `term -ui` in one terminal and `term` in two others:
 
 [<img src='doc/1-dash.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-dash.png)
 
@@ -112,11 +108,11 @@ A blank VS Code solution can be created by executing `mkdir` and `code` commands
 
 [<img src='doc/1-mkdir.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-mkdir.png)
 
-This opens a blank VS Code project:
+A blank VS Code project pops up:
 
 [<img src='doc/1-blank.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-blank.png)
 
-The only `nrpc-py` dependency can be installed with `pip install`:
+The `nrpc-py` dependency can be installed with `pip install`:
 
 [<img src='doc/1-pip.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-pip.png)
 
@@ -124,53 +120,99 @@ Installed dependencies can be validated with `pip list`:
 
 [<img src='doc/1-deps.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-deps.png)
 
+We start by creating two applications: server.py and client.py.
+A boilerplate server application can look something like this. Notice `nrpc_py.init()` initialization:
 
+[<img src='doc/1-boilerplate.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-boilerplate.png)
+
+Corresponding client application is similar:
+
+[<img src='doc/1-boilerplate-client.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-boilerplate-client.png)
+
+
+At this point we can already toggle both applications on and off in the dashboard:
+
+[<img src='doc/1-run-early.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-run-early.png)
+
+Next, let's define the magenta QueryInterface from the previous design diagram:
+
+```
+class QueryService:
+    def doQuery(self, request):
+        pass
+```
+
+This class can marked as a Native RPC class with `rpcclass` annotation:
+
+[<img src='doc/1-service.png' style='border: 1px solid white; margin-left: 40px;height: 100px'/>](doc/1-service.png)
+
+Let's not worry about code duplication for now and let's copy paste same definition in both server and client:
+
+[<img src='doc/1-duplicate.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-duplicate.png)
+
+Let's add and configure `RoutingSocket` instances. This class facilitates two-way communication between processes. 
+Both Server and Client applications need to declare a list of `types` and a socket type.
+
+[<img src='doc/1-routing-socket.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-routing-socket.png)
+
+When socket is bound or connected we can also print unique identifiers:
+
+```
+sock.bind(port=9001)
+print(f'Server up: ip={sock.ip_address} port={sock.port}')
+```
++
+```
+sock.connect(port=9001)
+print(f'Client up: id=#{sock.client_id} port=9001')
+```
+
+This way we can uniquely identify individual servers and clients:
+
+[<img src='doc/1-unique-ids.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-unique-ids.png)
+
+To finalize client's impelmentes let's add a `doQuery` invokation on a `QueryService` service:
+
+[<img src='doc/1-do-query.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-do-query.png)
+
+On the server side we need to implement `doQuery` method and handle the `my_input` value while producing `my_output` and `orig_request` values:
+
+[<img src='doc/1-do-query-server.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-do-query-server.png)
+
+Resulting printout with multiple clients:
+
+[<img src='doc/1-comms.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-comms.png)
+
+We can finally examine the topology and schema of this network configuration. Press `N` in the dashboard to switch tabs:
+
+[<img src='doc/1-topology.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-topology.png)
+
+Running processes can be inspected by pressing Enter twice, drilling down to a list of services and then methods:
+
+[<img src='doc/1-inspect.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-inspect.png)
+
+Running processes can be inspected by pressing Enter twice. This shows a list of defined services and methods: 
+
+[<img src='doc/1-inspect.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-inspect.png)
+
+When navigating the bottom most items (RPC methods) please use Left/Right keys to switch between applications/nodes, and thus comparing their values. Notice client's `server=False` flag, indicating that Client can only invoke `QueryService.doQuery` requests, not process them.
+
+[<img src='doc/1-only-invoke.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-only-invoke.png)
+
+This concludes this tutorial. For more information about statically types requests/reponses as well as proper system pre-validation see the next one.
 
 ## Tutorial 2
 
-???
-
-Startup commands:
-```
-npx server_example/server.ts
-```
-
-## Cross-platform
-
-???
-
-Example recipes:
-```
-term -wt "cmake -B build" "npx server_example/server.ts"
-```
-
-# Copy pasta recipes
-
-Getting started commands:
-```
-...
-```
-
-Server-client example:
-```
-term -wt "cmake -B build" "npx server_example/server.ts"
-```
-
-Cross-language example:
-```
-term -wt "cmake -B build" "npx server_example/server.ts"
-```
+todo ...
 
 
-# Visual resources
+# Media
 
-Visual resources and simple code examples below.
+A list of Youtube videos:
 
-website?
-github?
-youtube about techonlogy?
-youtube about setup?
-youtube about example 1?
-youtube about example 2?
-youtube about example 3?
-powerpoint?
+- [getting started](https://www.youtube.com/)
+- [motivation](https://www.youtube.com/)
+- [tutorial 1](https://www.youtube.com/)
+- [tutorial 2](https://www.youtube.com/)
+- [tutorial 3](https://www.youtube.com/)
+
