@@ -1,8 +1,9 @@
 import time
 import nrpc_py
+from nrpc_py import rpcclass
 
 
-@nrpc_py.rpcclass({'doQuery': 1})
+@rpcclass({'doQuery': 1})
 class QueryService:
     def doQuery(self, request):
         pass
@@ -17,7 +18,7 @@ class Application:
         )
         sock.connect(port=9001)
         print(f'Client up: id=#{sock.client_id} port=9001')
-        
+
         while sock.is_alive:
             client = sock.cast(QueryService)
             response = client.doQuery({
@@ -30,6 +31,3 @@ class Application:
 if __name__ == '__main__':
     nrpc_py.init()
     Application().start()
-
-# print(f'Client up, id=#1, port=9001')
-# time.sleep(1000000)

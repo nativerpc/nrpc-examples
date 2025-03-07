@@ -1,5 +1,7 @@
 # Native RPC (documentation and tutorials)
 
+Native RPC solution deals with many aspects of typical software development:
+
 Native RPC is a Cross-platform and cross-language communication library that rethinks the way we build distributed systems and handle communication between local and remote processes. 
 
 Solution draws inspiration from a wide-range of well-established and wide-spead solutions: 
@@ -21,25 +23,31 @@ Solution draws inspiration from a wide-range of well-established and wide-spead 
 
 [<img src='doc/0-logos.png' style='border: 1px solid white; margin-left: 40px;height: 250px'/>](doc/0-logos.png)
 
+Solution relies heavily on class annotations:
 
-This solution deals with many aspects of typical software development:
+[<img src='doc/0-annotations.png' style='border: 1px solid white; margin-left: 40px;height: 250px'/>](doc/0-annotations.png)
 
-- Distributed systems
-    - Socket communication
-- Network topology
-    - Servers, clients, services, RPC methods, request/response structures, fields
-- Centralized schema
-    - Services, RPC methods, structures, fields
-- System validation
-    - Stable distributed system bringup
-    - Error handling
-- Negotiated serialization
-    - JSON, protobuf, ROW, etc
-- Cross-launguage support
-    - C++, Python, Typescript, Webpack
-- Cross-platform
-    - Windows, Linux, Mac
+Allowing for static typing of request and reponse parameters:
 
+[<img src='doc/0-annotations-static.png' style='border: 1px solid white; margin-left: 40px;height: 250px'/>](doc/0-annotations-static.png)
+
+And:
+
+[<img src='doc/0-annotations-static.png' style='border: 1px solid white; margin-left: 40px;height: 250px'/>](doc/0-annotations-static.png)
+
+Network topology can be examined with `term` command, via `Network` tab:
+
+[<img src='doc/0-term.png' style='border: 1px solid white; margin-left: 40px;height: 250px'/>](doc/0-term.png)
+
+API schema can be examined with also:
+
+[<img src='doc/0-term-schema.png' style='border: 1px solid white; margin-left: 40px;height: 250px'/>](doc/0-term-schema.png)
+
+System is highly error-tolerant, able to visualize issues without crashing on application startup:
+
+[<img src='doc/0-term-validation.png' style='border: 1px solid white; margin-left: 40px;height: 250px'/>](doc/0-term-validation.png)
+
+# Additional details
 
 Implementation consists of 5 GitHub repositories:
 
@@ -63,7 +71,7 @@ Supported operating systems, programming environments, and programming languages
 - Python
 - Typescript
 
-On the implementation level there's 5 classes:
+Implementation consists of 5 classes:
 
 - nprclass - Class annotation class, that is used to describe 5 things: request structures, reponse structures, class fields, remote services, service RPC methods.
 - RoutingSocket - Handles serialization, routing, and error tracking. Bind- and Connect-style routing sockets are used to connects services with clients.
@@ -71,17 +79,58 @@ On the implementation level there's 5 classes:
 - ClientSocket - Same as Server Socket, but not uniquely identified by an IP and port.
 - ServiceClient - Wrapper around a RoutingSocket. Acts like a client to a remote service.
 
-Related command line tooling:
+Command line tooling:
 
-- `show` - Show's and examines network topology and schema.
-- `term` - Interactive multi-terminal launcher. Great for demoing.
+- `show` - Examines network topology and schema.
+- `term -ui` - Interactive multi-terminal launcher. Great for demoing.
+
+Powerpoint decks:
+
+- [Native RPC Tutorials](https://docs.google.com/presentation/d/1UrOLmjA1WwF7ql4m66g4meEZWsuXPj3_0mK58xsaL4E/edit#slide=id.g33dd9708c77_0_0)
 
 
 # Getting started
 
 Step-by-step instructions for configuring Native RPC dependencies and environment.
 
-todo...
+For starters, let's install the `term` utility from `nrpc-cli`:
+
+```
+mkdir git
+cd git
+git clone git@github.com:nativerpc/nrpc-cli.git
+cd nrpc-cli
+cmake -B build
+pip install -e .
+term --version
+show --version
+```
+
+This will allow us to configure all the necessary clone/build commands inside a `.term` configuration file:
+
+[<img src='doc/0-deps-config.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/0-deps-config.png)
+
+Allowing us to clone the dependencies:
+
+[<img src='doc/0-deps-clone.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/0-deps-clone.png)
+
+Then building the dependencies:
+
+[<img src='doc/0-deps-build.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/0-deps-build.png)
+
+Then installing the dependencies:
+
+[<img src='doc/0-deps-install.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/0-deps-install.png)
+
+Final step is validation. 
+
+[<img src='doc/0-deps-validation.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/0-deps-validation.png)
+
+The 'Network' tab can be used to examine the network topology and schema:
+
+[<img src='doc/0-deps-validation-schema.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/0-deps-validation-schema.png)
+
+Finally executables can be stopped with 'S' key and terminal launcher can be closed with 'Q' key.
 
 # Usage examples
 
@@ -90,7 +139,7 @@ todo...
 Step-by-step instructions for creating a simple server/client application that utilizes Native RPC framework in Python.
 This tutorial relies on the command line utility `term`, which was installed in `Getting started` chapter.
 
-The only other dependency is `nrpc-py` module, which implements the Native RPC tooling in Python.
+One other dependency is `nrpc-py` module, which implements the Native RPC tooling in Python.
 
 For starters, let's visualize our client/server applications in a system design diagram. The Client will be sending "doQuery" requests at 1 hz rate, and Server will be responding to each Request with Response.
 
@@ -161,7 +210,9 @@ When socket is bound or connected we can also print unique identifiers:
 sock.bind(port=9001)
 print(f'Server up: ip={sock.ip_address} port={sock.port}')
 ```
-+
+
+Also:
+
 ```
 sock.connect(port=9001)
 print(f'Client up: id=#{sock.client_id} port=9001')
@@ -206,13 +257,14 @@ This concludes this tutorial. For more information about statically types reques
 todo ...
 
 
-# Media
+# Media resources
 
-A list of Youtube videos:
+Powerpoint presentations and Youtube videos can be found here:
 
-- [getting started](https://www.youtube.com/)
-- [motivation](https://www.youtube.com/)
-- [tutorial 1](https://www.youtube.com/)
-- [tutorial 2](https://www.youtube.com/)
-- [tutorial 3](https://www.youtube.com/)
+- [Native RPC Tutorials](https://docs.google.com/presentation/d/1UrOLmjA1WwF7ql4m66g4meEZWsuXPj3_0mK58xsaL4E/edit#slide=id.g33dd9708c77_0_0) powerpoint 
+- [Native RPC Youtube](https://www.youtube.com/) channel
+- [Getting started](https://www.youtube.com/)
+- [Tutorial 1](https://www.youtube.com/)
+- [Tutorial 2](https://www.youtube.com/)
+- [Tutorial 3](https://www.youtube.com/)
 
