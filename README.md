@@ -82,7 +82,8 @@ Implementation consists of 5 classes:
 Command line tooling:
 
 - `show` - Examines network topology and schema.
-- `term -ui` - Interactive multi-terminal launcher. Great for demoing.
+- `term` - Interactive multi-terminal launcher. Great for demoing.
+- `termex` - Secondary executor.
 
 Powerpoint decks:
 
@@ -149,7 +150,7 @@ The dashboard launcher is configured by editing the `c:\git\.term` configuration
 
 [<img src='doc/1-term.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-term.png)
 
-The dashboard is opened by executing `term -ui` in one terminal and `term` in two others:
+The dashboard is opened by executing `term` in one terminal and `termex` in two others:
 
 [<img src='doc/1-dash.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/1-dash.png)
 
