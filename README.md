@@ -49,6 +49,18 @@ System is highly error-tolerant, able to visualize issues without crashing on ap
 
 # Additional details
 
+Powerpoint decks:
+
+- [Native RPC and Tutorials](https://docs.google.com/presentation/d/1UrOLmjA1WwF7ql4m66g4meEZWsuXPj3_0mK58xsaL4E/edit#slide=id.g33dd9708c77_0_324)
+
+Miro diagrams:
+
+- [Tutorial 1](https://miro.com/welcomeonboard/MUg5T2hYTXFIdDlLTXBESjFtWUxYc041VjNKcUxtVzQxcEE5S0pTRUlscDU4SnlKOE0zWUgycGJrbFlhelcyaVNmUTJWZmtLOGU0VE9NcnpEa014WnJuUDFheGo0QjBZMkc1a2JZK1ZsR1UwVmk4RXJLK2N6ZkFxOXdyS0RYOVBQdGo1ZEV3bUdPQWRZUHQzSGl6V2NBPT0hdjE=?share_link_id=327943147919) design
+
+Youtube videos:
+
+- [Native RPC introduction](https://www.youtube.com/)
+
 Implementation consists of 5 GitHub repositories:
 
 - [nrpc-examples](https://github.com/nativerpc/nrpc-examples) - Primary landing page for Native RPC. Describes the techonlogy and provides some usage examples.
