@@ -1,8 +1,6 @@
 # Native RPC (documentation and tutorials)
 
-Native RPC solution deals with many aspects of typical software development:
-
-Native RPC is a Cross-platform and cross-language communication library that rethinks the way we build distributed systems and handle communication between local and remote processes. 
+Native RPC is a cross-platform and cross-language communication library that rethinks the way we build distributed systems and handle communication between local and remote processes. Native RPC is a middleware that facilitates software-to-software or machine-to-machine communication.
 
 Media:
 
@@ -27,7 +25,7 @@ Solution draws inspiration from a wide-range of well-established and wide-spead 
 - C#'s serialization tools, language reflection, annotations
 - Node.JS's and Express's annotation based end-points 
 
-[<img src='doc/0-logos.png' style='border: 1px solid white; margin-left: 40px;height: 250px'/>](doc/0-logos.png)
+[<img src='doc/0-blend.png' style='border: 1px solid white; margin-left: 40px;height: 250px'/>](doc/0-blend.png)
 
 Solution relies heavily on class annotations:
 
@@ -41,6 +39,13 @@ And:
 
 [<img src='doc/0-annotations-static.png' style='border: 1px solid white; margin-left: 40px;height: 250px'/>](doc/0-annotations-static.png)
 
+Supported languages:
+
+- Python
+- Typescript
+- Typescript in Webpack
+- C++
+
 Network topology can be examined with `term` command, via `Network` tab:
 
 [<img src='doc/0-term.png' style='border: 1px solid white; margin-left: 40px;height: 250px'/>](doc/0-term.png)
@@ -49,9 +54,14 @@ API schema can be examined with also:
 
 [<img src='doc/0-term-schema.png' style='border: 1px solid white; margin-left: 40px;height: 250px'/>](doc/0-term-schema.png)
 
-System is highly error-tolerant, able to visualize issues without crashing on application startup:
+System is highly error-tolerant, able to visualize issues without impeding application startup:
 
 [<img src='doc/0-term-validation.png' style='border: 1px solid white; margin-left: 40px;height: 250px'/>](doc/0-term-validation.png)
+
+"Remote-only" methods and fields allow for GraphQL-like lean clients:
+
+[<img src='doc/0-remote-only.png' style='border: 1px solid white; margin-left: 40px;height: 250px'/>](doc/0-remote-only.png)
+
 
 Implementation consists of 5 GitHub repositories:
 
@@ -75,7 +85,7 @@ Supported operating systems, programming environments, and programming languages
 - Python
 - Typescript
 
-Implementation consists of 5 classes:
+5 classes:
 
 - nprclass - Class annotation class, that is used to describe 5 things: request structures, reponse structures, class fields, remote services, service RPC methods.
 - RoutingSocket - Handles serialization, routing, and error tracking. Bind- and Connect-style routing sockets are used to connects services with clients.
@@ -87,14 +97,14 @@ Command line tooling:
 
 - `show` - Examines network topology and schema.
 - `term` - Interactive multi-terminal launcher. Great for demoing.
-- `termex` - Secondary executor.
+- `termex` - Command executor.
 
 
 # Getting started
 
-Step-by-step instructions for configuring Native RPC dependencies and environment.
+Step-by-step instructions for configuring Native RPC dependencies and environment below.
 
-For starters, let's install the `term` utility from `nrpc-cli`:
+First, we need to boostrap CLI tooling:
 
 ```
 mkdir git
@@ -107,19 +117,29 @@ term --version
 show --version
 ```
 
-This will allow us to configure all the necessary clone/build commands inside a `.term` configuration file:
+Theoretically the following commands should work (sooner or later):
+
+```
+cd <your project>
+pip install nrpc-py
+npm install nrpc-ts
+vcpkg install nrpc-cpp
+```
+
+
+For now we can build depdences from the source code. Start by executing `term` utility, pressing `E`, and configuring all the necessary clone/build commands in the text editor:
 
 [<img src='doc/0-deps-config.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/0-deps-config.png)
 
-Allowing us to clone the dependencies:
+Then we can clone the dependencies:
 
 [<img src='doc/0-deps-clone.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/0-deps-clone.png)
 
-Then building the dependencies:
+Then build the dependencies:
 
 [<img src='doc/0-deps-build.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/0-deps-build.png)
 
-Then installing the dependencies:
+Then install:
 
 [<img src='doc/0-deps-install.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/0-deps-install.png)
 
@@ -127,20 +147,24 @@ Final step is validation.
 
 [<img src='doc/0-deps-validation.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/0-deps-validation.png)
 
-The 'Network' tab can be used to examine the network topology and schema:
+Use 'Network' tab to examine the network topology and schema:
 
 [<img src='doc/0-deps-validation-schema.png' style='border: 1px solid white; margin-left: 40px;height: 200px'/>](doc/0-deps-validation-schema.png)
 
-Finally executables can be stopped with 'S' key and terminal launcher can be closed with 'Q' key.
+For live presentations see:
+
+- Youtube: [Native RPC - Introduction](https://youtu.be/Y_GRAxnWPH0)
 
 # Usage examples
 
 ## Tutorial 1
 
 Step-by-step instructions for creating a simple server/client application that utilizes Native RPC framework in Python.
-This tutorial relies on the command line utility `term`, which was installed in `Getting started` chapter.
+This tutorial relies on the command line utility `term`, which was installed in `Getting started` chapter. Another dependency is `nrpc-py` module, which implements the Native RPC tooling in Python.
 
-One other dependency is `nrpc-py` module, which implements the Native RPC tooling in Python.
+Live presentation:
+
+- Youtube: [Native RPC - Introduction](https://youtu.be/Y_GRAxnWPH0)
 
 For starters, let's visualize our client/server applications in a system design diagram. The Client will be sending "doQuery" requests at 1 hz rate, and Server will be responding to each Request with Response.
 
