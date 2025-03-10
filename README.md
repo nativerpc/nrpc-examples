@@ -4,6 +4,12 @@ Native RPC solution deals with many aspects of typical software development:
 
 Native RPC is a Cross-platform and cross-language communication library that rethinks the way we build distributed systems and handle communication between local and remote processes. 
 
+Media:
+
+- Youtube: [Native RPC - Introduction](https://youtu.be/Y_GRAxnWPH0)
+- Powerpoint: [Native RPC - Introduction](https://docs.google.com/presentation/d/1UrOLmjA1WwF7ql4m66g4meEZWsuXPj3_0mK58xsaL4E/edit#slide=id.g33dd9708c77_0_324)
+- Miro: [Native RPC - Diagrams](https://miro.com/welcomeonboard/MUg5T2hYTXFIdDlLTXBESjFtWUxYc041VjNKcUxtVzQxcEE5S0pTRUlscDU4SnlKOE0zWUgycGJrbFlhelcyaVNmUTJWZmtLOGU0VE9NcnpEa014WnJuUDFheGo0QjBZMkc1a2JZK1ZsR1UwVmk4RXJLK2N6ZkFxOXdyS0RYOVBQdGo1ZEV3bUdPQWRZUHQzSGl6V2NBPT0hdjE=?share_link_id=327943147919) 
+
 Solution draws inspiration from a wide-range of well-established and wide-spead solutions: 
 
 - GRPC
@@ -47,20 +53,6 @@ System is highly error-tolerant, able to visualize issues without crashing on ap
 
 [<img src='doc/0-term-validation.png' style='border: 1px solid white; margin-left: 40px;height: 250px'/>](doc/0-term-validation.png)
 
-# Additional details
-
-Powerpoint decks:
-
-- [Native RPC and Tutorials](https://docs.google.com/presentation/d/1UrOLmjA1WwF7ql4m66g4meEZWsuXPj3_0mK58xsaL4E/edit#slide=id.g33dd9708c77_0_324)
-
-Miro diagrams:
-
-- [Tutorial 1](https://miro.com/welcomeonboard/MUg5T2hYTXFIdDlLTXBESjFtWUxYc041VjNKcUxtVzQxcEE5S0pTRUlscDU4SnlKOE0zWUgycGJrbFlhelcyaVNmUTJWZmtLOGU0VE9NcnpEa014WnJuUDFheGo0QjBZMkc1a2JZK1ZsR1UwVmk4RXJLK2N6ZkFxOXdyS0RYOVBQdGo1ZEV3bUdPQWRZUHQzSGl6V2NBPT0hdjE=?share_link_id=327943147919) design
-
-Youtube videos:
-
-- [Native RPC introduction](https://www.youtube.com/)
-
 Implementation consists of 5 GitHub repositories:
 
 - [nrpc-examples](https://github.com/nativerpc/nrpc-examples) - Primary landing page for Native RPC. Describes the techonlogy and provides some usage examples.
@@ -96,10 +88,6 @@ Command line tooling:
 - `show` - Examines network topology and schema.
 - `term` - Interactive multi-terminal launcher. Great for demoing.
 - `termex` - Secondary executor.
-
-Powerpoint decks:
-
-- [Native RPC Tutorials](https://docs.google.com/presentation/d/1UrOLmjA1WwF7ql4m66g4meEZWsuXPj3_0mK58xsaL4E/edit#slide=id.g33dd9708c77_0_0)
 
 
 # Getting started
@@ -269,15 +257,4 @@ This concludes this tutorial. For more information about statically types reques
 
 todo ...
 
-
-# Media resources
-
-Powerpoint presentations and Youtube videos can be found here:
-
-- [Native RPC Tutorials](https://docs.google.com/presentation/d/1UrOLmjA1WwF7ql4m66g4meEZWsuXPj3_0mK58xsaL4E/edit#slide=id.g33dd9708c77_0_0) powerpoint 
-- [Native RPC Youtube](https://www.youtube.com/) channel
-- [Getting started](https://www.youtube.com/)
-- [Tutorial 1](https://www.youtube.com/)
-- [Tutorial 2](https://www.youtube.com/)
-- [Tutorial 3](https://www.youtube.com/)
 
